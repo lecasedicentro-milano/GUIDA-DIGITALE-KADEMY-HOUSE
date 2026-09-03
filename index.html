@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida Digitale Ospiti</title>
+    <!-- Tailwind CSS per una grafica moderna e pulita -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased pb-12">
+
+    <!-- SELETTORE LINGUA IN ALTO -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Digital Guide</h1>
+            <div class="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+                <button onclick="setLanguage('it')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md bg-white shadow-sm transition-all" data-lang="it">IT</button>
+                <button onclick="setLanguage('en')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md text-gray-600 transition-all" data-lang="en">EN</button>
+                <button onclick="setLanguage('es')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md text-gray-600 transition-all" data-lang="es">ES</button>
+                <button onclick="setLanguage('fr')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md text-gray-600 transition-all" data-lang="fr">FR</button>
+                <button onclick="setLanguage('de')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md text-gray-600 transition-all" data-lang="de">DE</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto px-4 mt-6 space-y-4">
+
+        <!-- INTRO / NOME APPARTAMENTO -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm text-center border border-gray-100">
+            <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-widest">Benvenuti</span>
+            <h2 class="text-2xl font-bold mt-3 text-gray-900">INSERISCI_NOME_APPARTAMENTO</h2>
+            <p class="text-sm text-gray-500 mt-1">La tua casa lontano da casa</p>
+        </div>
+
+        <!-- SEZIONE WI-FI -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer font-semibold text-gray-800 list-none">
+                    <span class="flex items-center gap-3">
+                        <span class="p-2 bg-blue-50 text-blue-600 rounded-lg">??</span>
+                        <span class="lang-content active" data-lang="it">Wi-Fi & Connessione</span>
+                        <span class="lang-content" data-lang="en">Wi-Fi & Internet</span>
+                        <span class="lang-content" data-lang="es">Wi-Fi y Conexión</span>
+                        <span class="lang-content" data-lang="fr">Wi-Fi & Connexion</span>
+                        <span class="lang-content" data-lang="de">Wi-Fi & Internet</span>
+                    </span>
+                    <span class="transition group-open:rotate-180">?</span>
+                </summary>
+                <div class="p-4 pt-0 text-sm text-gray-600 border-t border-gray-50 space-y-2 mt-2">
+                    <p><strong>Network:</strong> INSERISCI_NOME_RETE</p>
+                    <p><strong>Password:</strong> INSERISCI_PASSWORD_WIFI</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- REGOLE DELLA CASA -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer font-semibold text-gray-800 list-none">
+                    <span class="flex items-center gap-3">
+                        <span class="p-2 bg-amber-50 text-amber-600 rounded-lg">??</span>
+                        <span class="lang-content active" data-lang="it">Regole della Casa</span>
+                        <span class="lang-content" data-lang="en">House Rules</span>
+                        <span class="lang-content" data-lang="es">Normas de la Casa</span>
+                        <span class="lang-content" data-lang="fr">Règlement Intérieur</span>
+                        <span class="lang-content" data-lang="de">Hausregeln</span>
+                    </span>
+                    <span class="transition group-open:rotate-180">?</span>
+                </summary>
+                <div class="p-4 pt-0 text-sm text-gray-600 border-t border-gray-50 space-y-2 mt-2">
+                    <p class="lang-content active" data-lang="it">• Vietato fumare all'interno.<br>• Orario di silenzio: 22:00 - 08:00.<br>• Animali non ammessi (salvo accordi).</p>
+                    <p class="lang-content" data-lang="en">• No smoking inside.<br>• Quiet hours: 10 PM - 8 AM.<br>• Pets not allowed (unless agreed).</p>
+                    <p class="lang-content" data-lang="es">• Prohibido fumar dentro.<br>• Horario de silencio: 22:00 - 08:00.<br>• No se admiten mascotas.</p>
+                    <p class="lang-content" data-lang="fr">• Interdiction de fumer à l'intérieur.<br>• Heures de silence : 22h00 - 08h00.<br>• Animaux non admis.</p>
+                    <p class="lang-content" data-lang="de">• Rauchen im Inneren verboten.<br>• Nachtruhe: 22:00 - 08:00 Uhr.<br>• Haustiere nicht erlaubt.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- PULSANTI RAPIDI (EMERGENZA / WHATSAPP) -->
+        <div class="grid grid-cols-2 gap-3 pt-2">
+            <a href="https://wa.me/INSERISCI_TUO_NUMERO" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-4 rounded-xl text-sm shadow-sm transition-all">
+                <span>?? WhatsApp</span>
+            </a>
+            <a href="tel:INSERISCI_TUO_NUMERO" class="flex items-center justify-center gap-2 bg-gray-900 hover:bg-black text-white font-medium py-3 px-4 rounded-xl text-sm shadow-sm transition-all">
+                <span>?? Chiama</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- SCRIPT PER CAMBIO LINGUA DINAMICO -->
+    <script>
+        function setLanguage(lang) {
+            // Salva la preferenza
+            localStorage.setItem('preferred_lang', lang);
+            
+            // Aggiorna visibilità testi
+            document.querySelectorAll('.lang-content').forEach(el => {
+                if(el.getAttribute('data-lang') === lang) {
+                    el.classList.add('active');
+                } else {
+                    el.classList.remove('active');
+                }
+            });
+
+            // Aggiorna stile bottoni
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if(btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('bg-white', 'shadow-sm');
+                    btn.classList.remove('text-gray-600');
+                } else {
+                    btn.classList.remove('bg-white', 'shadow-sm');
+                    btn.classList.add('text-gray-600');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
