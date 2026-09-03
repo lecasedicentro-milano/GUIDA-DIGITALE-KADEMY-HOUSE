@@ -3,275 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benvenuto - Guida Ospiti</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Kademy House - Guida Digitale</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome per le icone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+    <script>
+        // Funzione per aprire/chiudere il menu laterale a sinistra
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('menuOverlay');
+            menu.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
         }
-    </style>
+
+        // Funzione per il cambio lingua (predisposta)
+        function changeLang(lang) {
+            console.log("Lingua cambiata in: " + lang);
+        }
+    </script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col items-center justify-start p-4">
+<body class="bg-[#FDF6F7] text-slate-900 antialiased min-h-screen">
 
-    <!-- Wrapper principale (stile card mobile-first) -->
-    <div class="w-full max-w-md bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden my-4">
+    <!-- MENU LATERALE A SCOMPARSA -->
+    <div id="sideMenu" class="fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out p-5 flex flex-col justify-between border-r border-[#C5A059]/30">
+        <div>
+            <div class="flex justify-between items-center mb-6 border-b border-rose-100 pb-3">
+                <h2 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-house-chimney text-[#C5A059]"></i> Menu Guide
+                </h2>
+                <button onclick="toggleMenu()" class="text-slate-400 hover:text-slate-600 p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <nav class="space-y-2 text-sm font-medium text-slate-700">
+                <a href="#appartamento" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-house w-5 text-[#C5A059]"></i> L'Appartamento & Zona</a>
+                <a href="#regole" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-triangle-exclamation w-5 text-red-500"></i> Regole della Casa</a>
+                <a href="#wifi" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-wifi w-5 text-slate-900"></i> Wi-Fi Gratuito</a>
+                <a href="#ristoranti" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-utensils w-5 text-slate-900"></i> Dove Mangiare & Spesa</a>
+                <a href="#shopping" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-bag-shopping w-5 text-pink-500"></i> Shopping & Guide</a>
+                <a href="#trasporti" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-train w-5 text-blue-600"></i> Treni & Aeroporti</a>
+                <a href="#sicurezza" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-pills w-5 text-red-500"></i> Farmacie, Ospedali & Sicurezza</a>
+            </nav>
+        </div>
+        <div class="text-xs text-[#8E735B] text-center border-t border-rose-100 pt-3">
+            Kademy House • Milano
+        </div>
+    </div>
+    <!-- Sfondo scuro trasparente quando il menu è aperto -->
+    <div id="menuOverlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
 
-        <!-- HEADER / COPERTINA -->
-        <div class="bg-slate-900 text-white p-6 text-center relative">
-            <div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium tracking-wide">
-                Guida Ospiti
+    <!-- BARRA SUPERIORE FISSA -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-[#C5A059]/30">
+        <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <!-- TRE PUNTINI (MENU) -->
+                <button onclick="toggleMenu()" class="w-9 h-9 rounded-xl bg-[#FDF6F7] border border-[#C5A059]/40 hover:bg-[#F5E6E8] flex items-center justify-center text-slate-800 transition shadow-sm" aria-label="Apri menu">
+                    <i class="fa-solid fa-ellipsis-vertical text-lg text-[#C5A059]"></i>
+                </button>
+                <h1 class="font-black text-slate-900 tracking-wider text-base uppercase">Kademy House</h1>
             </div>
-            <div class="w-16 h-16 bg-white/10 rounded-2xl mx-auto flex items-center justify-center mb-3 backdrop-blur-sm border border-white/10">
-                <i class="fa-solid fa-house-chimney text-2xl text-white"></i>
-            </div>
-            <h1 class="text-xl font-bold tracking-tight">Benvenuto nel tuo alloggio!</h1>
-            <p class="text-xs text-slate-400 mt-1">Tutto ciò di cui hai bisogno a portata di mano</p>
-            
-            <!-- Azioni rapide (Telefono con numero aggiornato & WhatsApp) -->
-            <div class="flex justify-center gap-3 mt-5">
-                <a href="tel:+393474128490" class="flex-1 bg-white/10 hover:bg-white/20 transition py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 border border-white/10">
-                    <i class="fa-solid fa-phone text-emerald-400"></i> Chiama Host
-                </a>
-                <a href="https://wa.me/393474128490" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 transition py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
-                </a>
+            <!-- SELEZIONE LINGUE (IT, EN, FR, ES, DE) -->
+            <div class="flex gap-1 overflow-x-auto py-1">
+                <button onclick="changeLang('it')" class="px-1.5 py-0.5 text-[10px] font-bold bg-[#C5A059] text-white rounded shadow-sm">IT</button>
+                <button onclick="changeLang('en')" class="px-1.5 py-0.5 text-[10px] font-bold bg-rose-50 hover:bg-[#F5E6E8] text-slate-700 rounded">EN</button>
+                <button onclick="changeLang('fr')" class="px-1.5 py-0.5 text-[10px] font-bold bg-rose-50 hover:bg-[#F5E6E8] text-slate-700 rounded">FR</button>
+                <button onclick="changeLang('es')" class="px-1.5 py-0.5 text-[10px] font-bold bg-rose-50 hover:bg-[#F5E6E8] text-slate-700 rounded">ES</button>
+                <button onclick="changeLang('de')" class="px-1.5 py-0.5 text-[10px] font-bold bg-rose-50 hover:bg-[#F5E6E8] text-slate-700 rounded">DE</button>
             </div>
         </div>
+    </header>
 
-        <!-- CONTENUTO PRINCIPALE (ACCORDION) -->
-        <div class="p-4 space-y-3 bg-slate-50/50">
+    <!-- CONTENUTO PRINCIPALE -->
+    <main class="max-w-md mx-auto p-4 space-y-4 pb-32">
 
-            <!-- 1. WI-FI -->
-            <section class="bg-white rounded-2xl shadow-sm border-slate-200 overflow-hidden border">
-                <details class="group">
-                    <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-white shadow-sm">
-                                <i class="fa-solid fa-wifi text-lg"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-sm">Connessione Wi-Fi</h3>
-                                <p class="text-xs text-slate-600 font-medium">Password e nome rete</p>
-                            </div>
+        <!-- 1. FOTO COPERTINA FISSA E APERTA -->
+        <section class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/40 overflow-hidden p-4 space-y-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 font-bold shadow-sm">
+                    <i class="fa-solid fa-house text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="font-bold text-slate-900 text-sm">Benvenuti a Kademy House!</h2>
+                    <p class="text-xs text-[#8E735B]">La tua oasi di lusso nel cuore di Milano</p>
+                </div>
+            </div>
+            <div class="rounded-xl overflow-hidden shadow-inner border border-rose-100">
+                <img src="soggiorno.jpg" alt="Appartamento Kademy House" class="w-full h-48 object-cover">
+            </div>
+            <p class="text-xs text-slate-700 leading-relaxed pt-1">
+                La tua casa lontano da casa in <strong>Via Benedetto Marcello 93</strong>. Al 5° piano (luminoso e silenzioso), 2 camere da letto, cucina e soggiorno con divano letto (fino a 5 posti).
+            </p>
+        </section>
+
+        <!-- 2. L'APPARTAMENTO & ZONA (BLU + MAPPA E PULSANTE TU SEI QUI) -->
+        <section id="appartamento" class="bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-blue-50/40 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shadow-sm">
+                            <i class="fa-solid fa-location-dot text-lg"></i>
                         </div>
-                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 group-open:rotate-180 transition-transform duration-300">
-                            <i class="fa-solid fa-chevron-down text-xs"></i>
-                        </span>
-                    </summary>
-                    <div class="p-4 pt-0 space-y-3 border-t border-slate-200 text-xs text-slate-700">
-                        <div class="mt-3 p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-                            <div class="flex justify-between items-center">
-                                <span class="text-slate-600 font-medium">Nome Rete (SSID):</span>
-                                <span class="font-bold text-slate-900 bg-white px-2.5 py-1 rounded-lg border border-slate-200">CasaTua_Guest</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-slate-600 font-medium">Password:</span>
-                                <span class="font-bold text-slate-900 bg-white px-2.5 py-1 rounded-lg border border-slate-200">Benvenuto2026!</span>
-                            </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">L'Appartamento & Posizione</h3>
+                            <p class="text-xs text-blue-600 font-medium">Via Benedetto Marcello 93, Milano</p>
                         </div>
                     </div>
-                </details>
-            </section>
-
-            <!-- 2. CHECK-IN & CHECK-OUT -->
-            <section class="bg-white rounded-2xl shadow-sm border-slate-200 overflow-hidden border">
-                <details class="group">
-                    <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-white shadow-sm">
-                                <i class="fa-solid fa-clock text-lg"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-sm">Check-in & Check-out</h3>
-                                <p class="text-xs text-slate-600 font-medium">Orari e regole principali</p>
-                            </div>
+                    <span class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </span>
+                </summary>
+                <div class="p-4 pt-0 space-y-3 border-t border-blue-100 text-xs text-slate-700 leading-relaxed">
+                    <p class="mt-2">Posizione imbattibile a due passi dalla <strong>Stazione Centrale</strong> e dalle linee metropolitane (rossa, verde, gialla). Il Duomo si raggiunge in meno di 15 minuti senza cambi.</p>
+                    
+                    <!-- PULSANTE E MAPPA INTERATTIVA "TU SEI QUI" -->
+                    <div class="pt-2 space-y-2">
+                        <a href="https://maps.google.com/?q=Via+Benedetto+Marcello+93+Milano" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md transition">
+                            <i class="fa-solid fa-location-crosshairs text-base animate-pulse"></i> Tu sei qui (Via Benedetto Marcello 93)
+                        </a>
+                        
+                        <!-- Finestra Mappa Incorporata -->
+                        <div class="rounded-xl overflow-hidden border border-blue-200 shadow-inner h-48 w-full bg-slate-100">
+                            <iframe 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                loading="lazy" 
+                                allowfullscreen 
+                                src="https://maps.google.com/maps?q=Via%20Benedetto%20Marcello%2093,%20Milano&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                            </iframe>
                         </div>
-                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 group-open:rotate-180 transition-transform duration-300">
-                            <i class="fa-solid fa-chevron-down text-xs"></i>
-                        </span>
-                    </summary>
-                    <div class="p-4 pt-0 space-y-3 border-t border-slate-200 text-xs text-slate-700">
-                        <div class="grid grid-cols-2 gap-2 mt-3">
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
-                                <p class="text-slate-600 font-medium mb-1">Check-in</p>
-                                <p class="font-bold text-slate-900 text-sm">Dalle 15:00</p>
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
-                                <p class="text-slate-600 font-medium mb-1">Check-out</p>
-                                <p class="font-bold text-slate-900 text-sm">Entro le 10:00</p>
-                            </div>
-                        </div>
-                        <p class="text-slate-600 leading-relaxed">Vi ricordiamo di spegnere le luci e l'aria condizionata/riscaldamento prima di lasciare l'appartamento.</p>
                     </div>
-                </details>
-            </section>
 
-            <!-- 3. REGOLE DELLA CASA -->
-            <section class="bg-white rounded-2xl shadow-sm border-slate-200 overflow-hidden border">
-                <details class="group">
-                    <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-white shadow-sm">
-                                <i class="fa-solid fa-book-open text-lg"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-sm">Regole della Casa</h3>
-                                <p class="text-xs text-slate-600 font-medium">Convivenza e rispetto</p>
-                            </div>
+                    <p class="pt-2 font-semibold text-slate-900">🛒 Mercato Rionale (Martedì e Sabato):</p>
+                    <p>Proprio sotto casa in Via Benedetto Marcello trovi il mercato all'aperto per frutta e verdura freschissima a chilometro zero.</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- 3. REGOLE DELLA CASA (ROSSO) -->
+        <section id="regole" class="bg-white rounded-2xl shadow-sm border border-red-100 overflow-hidden">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-red-50/40 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center text-red-600 shadow-sm">
+                            <i class="fa-solid fa-triangle-exclamation text-lg"></i>
                         </div>
-                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 group-open:rotate-180 transition-transform duration-300">
-                            <i class="fa-solid fa-chevron-down text-xs"></i>
-                        </span>
-                    </summary>
-                    <div class="p-4 pt-0 space-y-2 border-t border-slate-200 text-xs text-slate-700">
-                        <ul class="space-y-2 mt-3">
-                            <li class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                                <i class="fa-solid fa-ban-smoking text-red-500 mt-0.5"></i>
-                                <span><strong>Vietato fumare</strong> all'interno dell'appartamento.</span>
-                            </li>
-                            <li class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                                <i class="fa-solid fa-volume-xmark text-amber-500 mt-0.5"></i>
-                                <span><strong>Orari di silenzio:</strong> Si prega di evitare rumori molesti dalle 22:00 alle 08:00.</span>
-                            </li>
-                            <li class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                                <i class="fa-solid fa-paw text-blue-500 mt-0.5"></i>
-                                <span><strong>Animali domestici:</strong> Verificare le condizioni concordate con l'host prima dell'arrivo.</span>
-                            </li>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Regole della Casa & Orari</h3>
+                            <p class="text-xs text-red-600 font-medium">Check-in, divieti e condominio</p>
+                        </div>
+                    </div>
+                    <span class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </span>
+                </summary>
+                <div class="p-4 pt-0 space-y-3 border-t border-red-100 text-xs text-slate-700">
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="p-2.5 bg-red-50/40 rounded-xl border border-red-100">
+                            <p class="font-bold text-slate-900">Check-in</p>
+                            <p class="text-slate-600">Dalle 15:00<br><span class="text-red-600 font-semibold">Self Check-in attivo</span></p>
+                        </div>
+                        <div class="p-2.5 bg-red-50/40 rounded-xl border border-red-100">
+                            <p class="font-bold text-slate-900">Check-out</p>
+                            <p class="text-slate-600">Dalle 00:01 alle 10:00</p>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-red-50/60 rounded-xl border border-red-200 space-y-1">
+                        <p class="font-bold text-slate-900">Divieti e Norme:</p>
+                        <ul class="list-disc pl-4 space-y-1 text-slate-700">
+                            <li><strong>Animali non ammessi</strong></li>
+                            <li><strong>Feste non ammesse</strong></li>
+                            <li><strong>Orario di silenzio:</strong> Dalle 22:00 alle 08:00 (rispetto condominio)</li>
+                            <li>Vietato fumare all'interno</li>
+                            <li>Firma obbligatoria del contratto turistico</li>
                         </ul>
                     </div>
-                </details>
-            </section>
+                </div>
+            </details>
+        </section>
 
-            <!-- 4. SMALTIMENTO RIFIUTI -->
-            <section class="bg-white rounded-2xl shadow-sm border-slate-200 overflow-hidden border">
-                <details class="group">
-                    <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-white shadow-sm">
-                                <i class="fa-solid fa-recycle text-lg"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-sm">Raccolta Differenziata</h3>
-                                <p class="text-xs text-slate-600 font-medium">Come smaltire i rifiuti</p>
-                            </div>
+        <!-- 4. WI-FI OSPITI (NERO) -->
+        <section id="wifi" class="bg-white rounded-2xl shadow-sm border-slate-200 overflow-hidden border">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-slate-50 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-white shadow-sm">
+                            <i class="fa-solid fa-wifi text-lg"></i>
                         </div>
-                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 group-open:rotate-180 transition-transform duration-300">
-                            <i class="fa-solid fa-chevron-down text-xs"></i>
-                        </span>
-                    </summary>
-                    <div class="p-4 pt-0 space-y-2 border-t border-slate-200 text-xs text-slate-700">
-                        <p class="text-slate-600 mt-3">Aiutaci a mantenere pulito l'ambiente differenziando correttamente i rifiuti negli appositi contenitori presenti in casa:</p>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2">
-                                <div class="w-3 h-3 rounded-full bg-yellow-400"><span></span></div>
-                                <span class="font-medium text-slate-800">Plastica & Metalli</span>
-                            </div>
-                            <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2">
-                                <div class="w-3 h-3 rounded-full bg-blue-500"><span></span></div>
-                                <span class="font-medium text-slate-800">Carta & Cartone</span>
-                            </div>
-                            <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2">
-                                <div class="w-3 h-3 rounded-full bg-emerald-500"><span></span></div>
-                                <span class="font-medium text-slate-800">Vetro</span>
-                            </div>
-                            <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2">
-                                <div class="w-3 h-3 rounded-full bg-amber-700"><span></span></div>
-                                <span class="font-medium text-slate-800">Umido / Organico</span>
-                            </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Wi-Fi Gratuito</h3>
+                            <p class="text-xs text-slate-600 font-medium">Nome rete, password e QR code</p>
                         </div>
                     </div>
-                </details>
-            </section>
-
-            <!-- 5. RISTORANTI TIPICI, COLAZIONE & SUPERMERCATI -->
-            <section id="ristoranti" class="bg-white rounded-2xl shadow-sm border-slate-200 overflow-hidden border">
-                <details class="group">
-                    <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-white shadow-sm">
-                                <i class="fa-solid fa-utensils text-lg"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-sm">Dove Mangiare, Colazione & Spesa</h3>
-                                <p class="text-xs text-slate-600 font-medium">Bar, ristoranti tipici e supermercati con mappe</p>
-                            </div>
+                    <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </span>
+                </summary>
+                <div class="p-4 pt-0 space-y-3 border-t border-slate-200 text-xs text-slate-700">
+                    <div class="p-3 bg-slate-50 rounded-xl space-y-2 border border-slate-200 mt-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-600 font-medium">SSID:</span>
+                            <span class="font-mono font-bold text-slate-900 bg-white px-2 py-1 rounded border border-slate-300 select-all">GUEST-FASTWEB-DEB5B1</span>
                         </div>
-                        <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 group-open:rotate-180 transition-transform duration-300">
-                            <i class="fa-solid fa-chevron-down text-xs"></i>
-                        </span>
-                    </summary>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-600 font-medium">Password:</span>
+                            <span class="font-mono font-bold text-slate-900 bg-white px-2 py-1 rounded border border-slate-300 select-all">12D895AB68</span>
+                        </div>
+                    </div>
+                    <div class="text-center p-3 bg-slate-50 rounded-xl border border-slate-300">
+                        <p class="font-bold text-slate-900 mb-2"><i class="fa-solid fa-qrcode mr-1 text-slate-900"></i> Inquadra per connetterti</p>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:S:GUEST-FASTWEB-DEB5B1;T:WPA;P:12D895AB68;;" alt="QR Code Wi-Fi" class="w-28 h-28 mx-auto bg-white p-1 rounded border border-slate-300 shadow-sm">
+                    </div>
+                </div>
+            </details>
+        </section>
+
+        <!-- 5. RISTORANTI, COLAZIONE & SUPERMERCATI (CON MAPPE DEDICATE E PULSANTE RISTORANTI TIPICI) -->
+        <section id="ristoranti" class="bg-white rounded-2xl shadow-sm border-slate-200 overflow-hidden border">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-slate-50 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-white shadow-sm">
+                            <i class="fa-solid fa-utensils text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Dove Mangiare, Colazione & Spesa</h3>
+                            <p class="text-xs text-slate-600 font-medium">Bar, ristoranti tipici e supermercati con mappe</p>
+                        </div>
+                    </div>
+                    <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </span>
+                </summary>
+                
+                <div class="p-4 pt-0 space-y-4 border-t border-slate-200 text-xs text-slate-700">
                     
-                    <div class="p-4 pt-0 space-y-4 border-t border-slate-200 text-xs text-slate-700">
+                    <!-- 1. COLAZIONE & BAR (CON MAPPA INTERATTIVA) -->
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2 mt-2">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
+                            <i class="fa-solid fa-mug-hot text-[#C5A059]"></i> Colazione, Bar & Pasticcerie
+                        </p>
+                        <p class="text-slate-600">Esplora la mappa qui sotto per scoprire tutti i bar e le pasticcerie artigianali vicine dove gustare un ottimo caffè e una pasta fresca. Clicca sui segnaposti per orientarti e raggiungere il locale scelto!</p>
                         
-                        <!-- 1. COLAZIONE & BAR (CON MAPPA INTERATTIVA) -->
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2 mt-2">
-                            <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
-                                <i class="fa-solid fa-mug-hot text-[#C5A059]"></i> Colazione, Bar & Pasticcerie
-                            </p>
-                            <p class="text-slate-600">Esplora la mappa qui sotto per scoprire tutti i bar e le pasticcerie artigianali vicine dove gustare un ottimo caffè e una pasta fresca. Clicca sui segnaposti per orientarti e raggiungere il locale scelto!</p>
-                            
-                            <!-- Mappa Bar e Pasticcerie -->
-                            <div class="rounded-xl overflow-hidden border border-slate-300 shadow-inner h-44 w-full bg-slate-100">
-                                <iframe 
-                                    width="100%" 
-                                    height="100%" 
-                                    style="border:0;" 
-                                    loading="lazy" 
-                                    allowfullscreen 
-                                    src="https://maps.google.com/maps?q=bar+pasticceria+vicino+Via+Benedetto+Marcello+93+Milano&t=&z=15&ie=UTF8&iwloc=&output=embed">
-                                </iframe>
-                            </div>
+                        <!-- Mappa Bar e Pasticcerie -->
+                        <div class="rounded-xl overflow-hidden border border-slate-300 shadow-inner h-44 w-full bg-slate-100">
+                            <iframe 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                loading="lazy" 
+                                allowfullscreen 
+                                src="https://maps.google.com/maps?q=bar+pasticcerie+vicino+Via+Benedetto+Marcello+93+Milano&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                            </iframe>
                         </div>
+                    </div>
 
-                        <!-- 2. SUPERMERCATI (CON MAPPA INTERATTIVA) -->
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-                            <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
-                                <i class="fa-solid fa-cart-shopping text-slate-900"></i> Supermercati & Spesa
-                            </p>
-                            <p class="text-slate-600">Hai bisogno di fare la spesa? Guarda la mappa per trovare i negozi di alimentari e supermercati più vicini aperti in zona.</p>
-                            
-                            <!-- Mappa Supermercati -->
-                            <div class="rounded-xl overflow-hidden border border-slate-300 shadow-inner h-44 w-full bg-slate-100">
-                                <iframe 
-                                    width="100%" 
-                                    height="100%" 
-                                    style="border:0;" 
-                                    loading="lazy" 
-                                    allowfullscreen 
-                                    src="https://maps.google.com/maps?q=supermercati+vicino+Via+Benedetto+Marcello+93+Milano&t=&z=15&ie=UTF8&iwloc=&output=embed">
-                                </iframe>
-                            </div>
+                    <!-- 2. SUPERMERCATI (CON MAPPA INTERATTIVA) -->
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
+                            <i class="fa-solid fa-cart-shopping text-slate-900"></i> Supermercati & Spesa
+                        </p>
+                        <p class="text-slate-600">Hai bisogno di fare la spesa? Guarda la mappa per trovare i negozi di alimentari e supermercati più vicini aperti in zona.</p>
+                        
+                        <!-- Mappa Supermercati -->
+                        <div class="rounded-xl overflow-hidden border border-slate-300 shadow-inner h-44 w-full bg-slate-100">
+                            <iframe 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                loading="lazy" 
+                                allowfullscreen 
+                                src="https://maps.google.com/maps?q=supermercati+vicino+Via+Benedetto+Marcello+93+Milano&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                            </iframe>
                         </div>
+                    </div>
 
-                        <!-- 3. RISTORANTI TIPICI (CON PULSANTE VANTAGGI) -->
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-                            <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
-                                <i class="fa-solid fa-plate-wheat text-slate-900"></i> Ristoranti Tipici Milanesi
-                            </p>
-                            <p class="text-slate-600">Trattorie e ristoranti tipici selezionati nei dintorni per assaggiare i piatti della tradizione (risotto, cotoletta, ossobuco).</p>
-                            
-                            <a href="#" target="_blank" class="block w-full text-center py-2.5 px-3 bg-slate-900 hover:bg-black text-white font-bold rounded-xl transition-colors mt-2 shadow-sm">
-                                Prenota tavolo con vantaggi solo sui ristoranti tipici →
+                    <!-- 3. RISTORANTI TIPICI (CON PULSANTE VANTAGGI) -->
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
+                            <i class="fa-solid fa-plate-wheat text-slate-900"></i> Ristoranti Tipici Milanesi
+                        </p>
+                        <p class="text-slate-600">Trattorie e ristoranti tipici selezionati nei dintorni per assaggiare i piatti della tradizione (risotto, cotoletta, ossobuco).</p>
+                        
+                        <a href="#" target="_blank" class="block w-full text-center py-2.5 px-3 bg-slate-900 hover:bg-black text-white font-bold rounded-xl transition-colors mt-2 shadow-sm">
+                            Prenota tavolo con vantaggi solo sui ristoranti tipici →
+                        </a>
+                    </div>
+
+                </div>
+            </details>
+        </section>
+
+        <!-- 6. SHOPPING & GUIDE (ROSA) -->
+        <section id="shopping" class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-pink-50/40 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-pink-50 border border-pink-200 flex items-center justify-center text-pink-600 shadow-sm">
+                            <i class="fa-solid fa-bag-shopping text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Shopping & Guide</h3>
+                            <p class="text-xs text-pink-600 font-medium">Corso Buenos Aires e Centro</p>
+                        </div>
+                    </div>
+                    <span class="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-pink-600 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </span>
+                </summary>
+                <div class="p-4 pt-0 space-y-3 border-t border-pink-100 text-xs text-slate-700">
+                    <div class="p-3 bg-pink-50/40 rounded-xl border border-pink-100 space-y-2 mt-2">
+                        <p class="font-bold text-slate-900">🛍️ Corso Buenos Aires</p>
+                        <p>A soli 4 minuti a piedi da casa per lo shopping. Per il Duomo: Metro M1 (Rossa) diretta in 15 minuti.</p>
+                        <a href="#" target="_blank" class="block w-full text-center py-2 px-3 bg-slate-900 hover:bg-black text-white font-bold rounded-lg transition-colors mt-2">
+                            Scopri la guida shopping →
+                        </a>
+                    </div>
+                </div>
+            </details>
+        </section>
+
+        <!-- 7. TRASPORTI, TRENI E AEROPORTI (TRENO BLU E NERO) -->
+        <section id="trasporti" class="bg-white rounded-2xl shadow-sm border border-blue-200 overflow-hidden">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-blue-50/40 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-900 border border-blue-600 flex items-center justify-center text-blue-400 shadow-sm">
+                            <i class="fa-solid fa-train-subway text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Treni, Bus Aeroporti & Bagagli</h3>
+                            <p class="text-xs text-blue-600 font-medium">Collegamenti partendo da Kademy House</p>
+                        </div>
+                    </div>
+                    <span class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </span>
+                </summary>
+                <div class="p-4 pt-0 space-y-3 border-t border-blue-100 text-xs text-slate-700">
+                    <div class="p-3 bg-blue-50/40 rounded-xl border border-blue-100 space-y-2 mt-2">
+                        <p class="font-bold text-slate-900">🚆 Treni & Stazione Centrale</p>
+                        <p>A 7-10 minuti a piedi per Frecciarossa e Italo.</p>
+                        <a href="#" target="_blank" class="block w-full text-center py-2 px-2 bg-slate-900 hover:bg-black text-white font-bold rounded-lg transition-colors">Acquista treni →</a>
+                    </div>
+                    <div class="p-3 bg-blue-50/40 rounded-xl border border-blue-100 space-y-2">
+                        <p class="font-bold text-slate-900">✈️ Navette Aeroportuali (Malpensa, Linate, Orio)</p>
+                        <p>Bus in partenza dalla Stazione Centrale (7-10 minuti a piedi).</p>
+                        <a href="#" target="_blank" class="block w-full text-center py-2 px-2 bg-slate-900 hover:bg-black text-white font-bold rounded-lg transition-colors">Prenota navetta →</a>
+                    </div>
+                    <div class="p-3 bg-blue-50/40 rounded-xl border border-blue-100 space-y-2">
+                        <p class="font-bold text-slate-900">🛄 Deposito Bagagli</p>
+                        <p>Vicino alla Stazione Centrale per girare liberi.</p>
+                        <a href="#" target="_blank" class="block w-full text-center py-2 px-2 bg-slate-900 hover:bg-black text-white font-bold rounded-lg transition-colors">Prenota deposito →</a>
+                    </div>
+                </div>
+            </details>
+        </section>
+
+        <!-- 8. FARMACIE, OSPEDALI E SICUREZZA (CROCE FARMACIA) -->
+        <section id="sicurezza" class="bg-white rounded-2xl shadow-sm border border-red-100 overflow-hidden">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-red-50/40 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center text-red-600 shadow-sm">
+                            <i class="fa-solid fa-pills text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Farmacie, Ospedali & Sicurezza</h3>
+                            <p class="text-xs text-red-600 font-medium">Farmacie H24, ospedali vicini e controllo</p>
+                        </div>
+                    </div>
+                    <span class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </span>
+                </summary>
+                
+                <div class="p-4 pt-0 space-y-3 border-t border-red-100 text-xs text-slate-700">
+                    
+                    <!-- FARMACIE VICINE CON MAPPA E H24 -->
+                    <div class="p-3 bg-red-50/40 rounded-xl border border-red-200 space-y-3 mt-2">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
+                            <i class="fa-solid fa-pills text-red-600"></i> Farmacie vicino a Via Benedetto Marcello 93:
+                        </p>
+
+                        <!-- 1. FARMACIA NOTTURNA H24 -->
+                        <div class="p-2.5 bg-white rounded-lg border border-red-200 shadow-sm space-y-1">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-slate-900">1. Farmacia Stazione Centrale (H24)</span>
+                                <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">APERTA H24</span>
+                            </div>
+                            <p class="text-slate-600">La più vicina per emergenze notturne e festive.</p>
+                            <p class="text-xs font-semibold text-slate-800">Tragitto da Kademy House: 5-7 minuti a piedi.</p>
+                            <a href="https://maps.google.com/?q=Farmacia+Stazione+Centrale+Milano" target="_blank" class="inline-flex items-center gap-1 text-red-600 font-bold hover:underline pt-1">
+                                <i class="fa-solid fa-map-location-dot"></i> Apri mappa e indicazioni →
                             </a>
                         </div>
 
+                        <!-- 2. SECONDA FARMACIA -->
+                        <div class="p-2.5 bg-white rounded-lg border border-red-200 shadow-sm space-y-1">
+                            <p class="font-bold text-slate-900">2. Farmacia nei Dintorni</p>
+                            <p class="text-slate-600">Ottima per farmaci da banco e prodotti di prima necessità.</p>
+                            <p class="text-xs font-semibold text-slate-800">Tragitto da Kademy House: 3 minuti a piedi.</p>
+                            <a href="https://maps.google.com/?q=Farmacia+Via+Benedetto+Marcello+Milano" target="_blank" class="inline-flex items-center gap-1 text-red-600 font-bold hover:underline pt-1">
+                                <i class="fa-solid fa-map-location-dot"></i> Apri mappa e indicazioni →
+                            </a>
+                        </div>
                     </div>
-                </details>
-            </section>
 
+                    <!-- OSPEDALI E PRONTO SOCCORSO -->
+                    <div class="p-3 bg-red-50/40 rounded-xl border border-red-200 space-y-3">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
+                            <i class="fa-solid fa-hospital text-red-600"></i> Ospedali e Pronto Soccorso vicini:
+                        </p>
+
+                        <div class="p-2.5 bg-white rounded-lg border border-red-200 shadow-sm space-y-1">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-slate-900">1. Istituto Auxologico San Luca</span>
+                                <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">SPECIALIZZATO</span>
+                            </div>
+                            <p class="text-slate-600">Punto di riferimento medico e sanitario in zona.</p>
+                            <a href="https://maps.google.com/?q=Istituto+Auxologico+San+Luca+Milano" target="_blank" class="inline-flex items-center gap-1 text-red-600 font-bold hover:underline pt-1">
+                                <i class="fa-solid fa-map-location-dot"></i> Apri mappa e indicazioni →
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- SICUREZZA -->
+                    <div class="p-3 bg-red-50/40 rounded-xl border border-red-200 space-y-1">
+                        <p class="font-bold text-slate-900"><i class="fa-solid fa-video text-red-600 mr-1"></i> Controllo Accessi & Sicurezza</p>
+                        <p class="text-slate-600">Immobile dotato di telecamera esterna di sicurezza a norma di legge.</p>
+                    </div>
+
+                </div>
+            </details>
+        </section>
+
+    </main>
+
+    <!-- BARRA FISSA IN BASSO PER CONTATTO RAPIDO (WHATSAPP & CHIAMATA) -->
+    <nav class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-[#C5A059]/30 p-3 z-30 shadow-lg">
+        <div class="max-w-md mx-auto grid grid-cols-2 gap-3">
+            <!-- Pulsante WhatsApp -->
+            <a href="https://wa.me/393474128490?text=Salve,%20ho%20bisogno%20di%20assistenza%20per%20Kademy%20House." target="_blank" class="flex items-center justify-center gap-2 py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm transition">
+                <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp
+            </a>
+            <!-- Pulsante Chiamata -->
+            <a href="tel:+393474128490" class="flex items-center justify-center gap-2 py-2.5 px-3 bg-[#C5A059] hover:bg-[#b08d4b] text-white font-bold text-xs rounded-xl shadow-sm transition">
+                <i class="fa-solid fa-phone text-sm"></i> Chiama Host
+            </a>
         </div>
-
-        <!-- FOOTER -->
-        <div class="bg-white p-4 text-center border-t border-slate-100 text-xs text-slate-600">
-            <p>Buon soggiorno e goditi la tua vacanza!</p>
-        </div>
-
-    </div>
+    </nav>
 
 </body>
 </html>
