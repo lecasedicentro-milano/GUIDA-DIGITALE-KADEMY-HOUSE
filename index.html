@@ -21,6 +21,39 @@
         function changeLang(lang) {
             console.log("Lingua cambiata in: " + lang);
         }
+
+        // Funzione per inviare l'ordine biancheria extra direttamente su WhatsApp
+        function inviaOrdineWhatsApp(event) {
+            event.preventDefault();
+            
+            const kitLettoAsc = document.getElementById('qty_kit_letto_asc').value;
+            const kitLetto = document.getElementById('qty_kit_letto').value;
+            const kitAsc = document.getElementById('qty_kit_asc').value;
+            const spazzolino = document.getElementById('qty_spazzolino').value;
+            const ciabattine = document.getElementById('qty_ciabattine').value;
+            const pagamento = document.getElementById('metodo_pagamento').value;
+
+            // Controlla se è stato selezionato almeno un articolo
+            if (kitLettoAsc == 0 && kitLetto == 0 && kitAsc == 0 && spazzolino == 0 && ciabattine == 0) {
+                alert("Seleziona almeno un articolo prima di ordinare.");
+                return;
+            }
+
+            let testo = "Salve! Vorrei ordinare i seguenti extra per Kademy House:%0A";
+            if (kitLettoAsc > 0) testo += `- ${kitLettoAsc}x Kit lenzuola matrimoniale con asciugamani per 2 persone (€15 cad.)%0A`;
+            if (kitLetto > 0) testo += `- ${kitLetto}x Kit di lenzuola matrimoniale (€10 cad.)%0A`;
+            if (kitAsc > 0) testo += `- ${kitAsc}x Kit di asciugamani (€10 cad.)%0A`;
+            if (spazzolino > 0) testo += `- ${spazzolino}x Spazzolino da denti (€2 cad.)%0A`;
+            if (ciabattine > 0) testo += `- ${ciabattine}x Coppia di ciabattine (€1 cad.)%0A`;
+            
+            testo += `%0AMetodo di pagamento scelto: ${pagamento}`;
+
+            // Numero WhatsApp dell'host
+            const numeroHost = "393474128490";
+            const urlWhatsApp = `https://wa.me/${numeroHost}?text=${testo}`;
+            
+            window.open(urlWhatsApp, '_blank');
+        }
     </script>
 </head>
 <body class="bg-[#FDF6F7] text-slate-900 antialiased min-h-screen">
@@ -37,12 +70,14 @@
                 </button>
             </div>
             <nav class="space-y-2 text-sm font-medium text-slate-700">
-                <a href="#appartamento" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-house w-5 text-[#C5A059]"></i> L'Appartamento & Zona</a>
+                <a href="#appartamento" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-house w-5 text-[#C5A059]"></i> L'Appartamento & Vista</a>
+                <a href="#dotazioni" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-box-open w-5 text-[#C5A059]"></i> Dotazioni & Comfort</a>
                 <a href="#regole" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-triangle-exclamation w-5 text-[#C5A059]"></i> Regole della Casa</a>
                 <a href="#wifi" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-wifi w-5 text-[#C5A059]"></i> Wi-Fi Gratuito</a>
                 <a href="#ristoranti" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-utensils w-5 text-[#C5A059]"></i> Dove Mangiare & Spesa</a>
                 <a href="#shopping" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-bag-shopping w-5 text-[#C5A059]"></i> Shopping & Guide</a>
                 <a href="#trasporti" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-train w-5 text-[#C5A059]"></i> Treni & Aeroporti</a>
+                <a href="#extra" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-basket-shopping w-5 text-[#C5A059]"></i> Biancheria Extra & Shop</a>
                 <a href="#sicurezza" onclick="toggleMenu()" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#FDF6F7] transition"><i class="fa-solid fa-pills w-5 text-[#C5A059]"></i> Farmacie, Ospedali & Sicurezza</a>
             </nav>
         </div>
@@ -92,7 +127,7 @@
                 <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAE3AZQCBAE/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=" alt="Appartamento Kademy House" class="w-full h-48 object-cover">
             </div>
             <p class="text-xs text-slate-700 leading-relaxed pt-1">
-                La tua casa lontano da casa in <strong>Via Benedetto Marcello 93</strong>. Al 5° piano (luminoso e silenzioso), 2 camere da letto, cucina e soggiorno con divano letto (fino a 5 posti).
+                Splendida <strong>vista su Via Benedetto Marcello</strong>. Al 5° piano con ascensore (luminoso e silenzioso), 2 camere da letto, cucina e soggiorno con divano letto (fino a 5 ospiti). Self check-in con cassetta chiavi.
             </p>
         </section>
 
@@ -114,7 +149,7 @@
                     </span>
                 </summary>
                 <div class="p-4 pt-0 space-y-3 border-t border-rose-100 text-xs text-slate-700 leading-relaxed">
-                    <p class="mt-2">Posizione imbattibile a due passi dalla <strong>Stazione Centrale</strong> e dalle linee metropolitane (rossa, verde, gialla). Il Duomo si raggiunge in meno di 15 minuti senza cambi.</p>
+                    <p class="mt-2">Posizione imbattibile a due passi dalla <strong>Stazione Centrale</strong> e dalle linee metropolitane. Ingresso privato, edificio con giardino condiviso recintato e ascensore. Disponibile garage a pagamento (1 in loco, e non).</p>
                     
                     <!-- PULSANTE E MAPPA INTERATTIVA "TU SEI QUI" -->
                     <div class="pt-2 space-y-2">
@@ -136,12 +171,80 @@
                     </div>
 
                     <p class="pt-2 font-semibold text-slate-900">🛒 Mercato Rionale (Martedì e Sabato):</p>
-                    <p>Proprio sotto casa in Via Benedetto Marcello trovi il mercato all'aperto per frutta e verdura freschissima a chilometro zero.</p>
+                    <p>Proprio sotto casa in Via Benedetto Marcello trovi il mercato all'aperto per frutta e verdura freschissima.</p>
                 </div>
             </details>
         </section>
 
-        <!-- 3. REGOLE DELLA CASA -->
+        <!-- 3. DOTAZIONI & COMFORT COMPLETI -->
+        <section id="dotazioni" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-rose-50/30 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#FDF6F7] border border-[#C5A059]/30 flex items-center justify-center text-[#C5A059] shadow-sm">
+                            <i class="fa-solid fa-box-open text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Dotazioni, Cucina & Comfort</h3>
+                            <p class="text-xs text-[#C5A059] font-medium">Tutto ciò che trovi a tua disposizione</p>
+                        </div>
+                    </div>
+                    <span class="w-8 h-8 rounded-full bg-[#FDF6F7] flex items-center justify-center text-[#C5A059] group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </span>
+                </summary>
+                
+                <div class="p-4 pt-0 space-y-3 border-t border-rose-100 text-xs text-slate-700">
+                    
+                    <!-- Bagno -->
+                    <div class="p-3 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20 space-y-1.5 mt-2">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5"><i class="fa-solid fa-bath text-[#C5A059]"></i> Bagno</p>
+                        <p class="text-slate-600">Bidet, doccia spaziosa, lavandino, acqua calda, asciugacapelli.</p>
+                        <p class="text-slate-600">Shampoo, balsamo, bagnoschiuma e sapone inclusi.</p>
+                    </div>
+
+                    <!-- Cucina & Elettrodomestici -->
+                    <div class="p-3 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20 space-y-1.5">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5"><i class="fa-solid fa-kitchen-set text-[#C5A059]"></i> Cucina e Zona Pranzo</p>
+                        <p class="text-slate-600">Cucina completa, frigorifero, congelatore, forno, microonde, piano cottura a induzione.</p>
+                        <p class="text-slate-600">Macchina caffè Nespresso (con capsule incluse), bollitore, tostapane.</p>
+                        <p class="text-slate-600">Piatti, posate, pentole e calici da vino.</p>
+                        <p class="text-slate-600">Detersivo piatti, spugna e prodotti per la pulizia.</p>
+                    </div>
+
+                    <!-- Lavanderia -->
+                    <div class="p-3 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20 space-y-1.5">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5"><i class="fa-solid fa-shirt text-[#C5A059]"></i> Lavanderia & Pulizie</p>
+                        <p class="text-slate-600">Lavatrice gratuita nell'alloggio (programma rapido 15 min disponibile) con 2 capsule lavatrice incluse.</p>
+                        <p class="text-slate-600">Aspirapolvere, ferro da stiro, stendibiancheria, armadio e grucce.</p>
+                    </div>
+
+                    <!-- Biancheria & Ripposo -->
+                    <div class="p-3 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20 space-y-1.5">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5"><i class="fa-solid fa-bed text-[#C5A059]"></i> Biancheria & Comfort</p>
+                        <p class="text-slate-600">Asciugamani, lenzuola in cotone, coperte e carta igienica.</p>
+                        <p class="text-slate-600">Cassaforte di sicurezza disponibile.</p>
+                    </div>
+
+                    <!-- Clima & Sicurezza -->
+                    <div class="p-3 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20 space-y-1.5">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5"><i class="fa-solid fa-temperature-arrow-up text-[#C5A059]"></i> Clima e Sicurezza</p>
+                        <p class="text-slate-600">Riscaldamento, aria condizionata e ventilatore a soffitto.</p>
+                        <p class="text-slate-600">Allarme antincendio, rilevatore di monossido di carbonio, estintore e kit di primo soccorso.</p>
+                    </div>
+
+                    <!-- Intrattenimento & Ufficio -->
+                    <div class="p-3 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20 space-y-1.5">
+                        <p class="font-bold text-slate-900 flex items-center gap-1.5"><i class="fa-solid fa-tv text-[#C5A059]"></i> Internet, TV & Ufficio</p>
+                        <p class="text-slate-600">Wi-Fi veloce ultra-rapido (885 Mbps).</p>
+                        <p class="text-slate-600">HDTV 32": puoi accedere tramite QR ai film e intrattenimento usando il tuo account personale a piacere. Il monitor si può usare anche con la tua tastiera.</p>
+                    </div>
+
+                </div>
+            </details>
+        </section>
+
+        <!-- 4. REGOLE DELLA CASA -->
         <section id="regole" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
             <details class="group">
                 <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-rose-50/30 transition">
@@ -162,7 +265,7 @@
                     <div class="grid grid-cols-2 gap-2 mt-2">
                         <div class="p-2.5 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20">
                             <p class="font-bold text-slate-900">Check-in</p>
-                            <p class="text-slate-600">Dalle 15:00<br><span class="text-[#C5A059] font-semibold">Self Check-in attivo</span></p>
+                            <p class="text-slate-600">Dalle 15:00<br><span class="text-[#C5A059] font-semibold">Self Check-in (cassetta chiavi)</span></p>
                         </div>
                         <div class="p-2.5 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20">
                             <p class="font-bold text-slate-900">Check-out</p>
@@ -172,9 +275,10 @@
                     <div class="p-3 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/30 space-y-1">
                         <p class="font-bold text-slate-900">Divieti e Norme:</p>
                         <ul class="list-disc pl-4 space-y-1 text-slate-700">
+                            <li><strong>Soggiorni a lungo termine non permessi</strong></li>
                             <li><strong>Animali non ammessi</strong></li>
                             <li><strong>Feste non ammesse</strong></li>
-                            <li><strong>Orario di silenzio:</strong> Dalle 22:00 alle 08:00 (rispetto condominio)</li>
+                            <li><strong>Orario di silenzio:</strong> Dalle 22:00 alle 08:00</li>
                             <li>Vietato fumare all'interno</li>
                             <li>Firma obbligatoria del contratto turistico</li>
                         </ul>
@@ -183,7 +287,7 @@
             </details>
         </section>
 
-        <!-- 4. WI-FI OSPITI -->
+        <!-- 5. WI-FI OSPITI -->
         <section id="wifi" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
             <details class="group">
                 <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-rose-50/30 transition">
@@ -192,7 +296,7 @@
                             <i class="fa-solid fa-wifi text-lg"></i>
                         </div>
                         <div>
-                            <h3 class="font-bold text-slate-900 text-sm">Wi-Fi Gratuito</h3>
+                            <h3 class="font-bold text-slate-900 text-sm">Wi-Fi Veloce (885 Mbps)</h3>
                             <p class="text-xs text-[#C5A059] font-medium">Nome rete, password e QR code</p>
                         </div>
                     </div>
@@ -219,7 +323,7 @@
             </details>
         </section>
 
-        <!-- 5. RISTORANTI, COLAZIONE & SUPERMERCATI -->
+        <!-- 6. RISTORANTI, COLAZIONE & SUPERMERCATI -->
         <section id="ristoranti" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
             <details class="group">
                 <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-rose-50/30 transition">
@@ -244,7 +348,7 @@
                         <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
                             <i class="fa-solid fa-mug-hot text-[#C5A059]"></i> Colazione, Bar & Pasticcerie
                         </p>
-                        <p class="text-slate-600">Esplora la mappa qui sotto per scoprire tutti i bar e le pasticcerie artigianali vicine dove gustare un ottimo caffè e una pasta fresca.</p>
+                        <p class="text-slate-600">Esplora la mappa qui sotto per scoprire bar e pasticcerie artigianali vicine.</p>
                         
                         <div class="rounded-xl overflow-hidden border border-[#C5A059]/30 shadow-inner h-44 w-full bg-slate-100">
                             <iframe 
@@ -263,7 +367,7 @@
                         <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
                             <i class="fa-solid fa-cart-shopping text-[#C5A059]"></i> Supermercati & Spesa
                         </p>
-                        <p class="text-slate-600">Hai bisogno di fare la spesa? Guarda la mappa per trovare i negozi di alimentari e supermercati più vicini aperti in zona.</p>
+                        <p class="text-slate-600">Trova i negozi di alimentari e supermercati più vicini.</p>
                         
                         <div class="rounded-xl overflow-hidden border border-[#C5A059]/30 shadow-inner h-44 w-full bg-slate-100">
                             <iframe 
@@ -282,10 +386,10 @@
                         <p class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
                             <i class="fa-solid fa-plate-wheat text-[#C5A059]"></i> Ristoranti Tipici Milanesi
                         </p>
-                        <p class="text-slate-600">Trattorie e ristoranti tipici selezionati nei dintorni per assaggiare i piatti della tradizione (risotto, cotoletta, ossobuco).</p>
+                        <p class="text-slate-600">Trattorie e ristoranti selezionati nei dintorni per piatti della tradizione.</p>
                         
                         <a href="#" target="_blank" class="block w-full text-center py-2.5 px-3 bg-[#C5A059] hover:bg-[#b08d4b] text-white font-bold rounded-xl transition-colors mt-2 shadow-sm">
-                            Prenota tavolo con vantaggi solo sui ristoranti tipici →
+                            Prenota tavolo con vantaggi sui ristoranti tipici →
                         </a>
                     </div>
 
@@ -293,7 +397,7 @@
             </details>
         </section>
 
-        <!-- 6. SHOPPING & GUIDE -->
+        <!-- 7. SHOPPING & GUIDE -->
         <section id="shopping" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
             <details class="group">
                 <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-rose-50/30 transition">
@@ -322,7 +426,7 @@
             </details>
         </section>
 
-        <!-- 7. TRASPORTI, TRENI E AEROPORTI -->
+        <!-- 8. TRASPORTI, TRENI E AEROPORTI -->
         <section id="trasporti" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
             <details class="group">
                 <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-rose-50/30 transition">
@@ -359,7 +463,93 @@
             </details>
         </section>
 
-        <!-- 8. FARMACIE, OSPEDALI E SICUREZZA -->
+        <!-- 9. BIANCHERIA EXTRA & SHOP DIRECT WHATSAPP -->
+        <section id="extra" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
+            <details class="group">
+                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-rose-50/30 transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#FDF6F7] border border-[#C5A059]/30 flex items-center justify-center text-[#C5A059] shadow-sm">
+                            <i class="fa-solid fa-basket-shopping text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Servizio Biancheria Extra & Shop</h3>
+                            <p class="text-xs text-[#C5A059] font-medium">Ordina direttamente su WhatsApp</p>
+                        </div>
+                    </div>
+                    <span class="w-8 h-8 rounded-full bg-[#FDF6F7] flex items-center justify-center text-[#C5A059] group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </span>
+                </summary>
+                
+                <div class="p-4 pt-0 space-y-3 border-t border-rose-100 text-xs text-slate-700">
+                    <p class="mt-2 text-slate-600">Hai bisogno di biancheria extra o comfort igienici? Seleziona le quantità e invia l'ordine direttamente all'host via WhatsApp.</p>
+                    
+                    <form onsubmit="inviaOrdineWhatsApp(event)" class="space-y-3 pt-1">
+                        
+                        <!-- Articolo 1 -->
+                        <div class="flex justify-between items-center p-2.5 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20">
+                            <div>
+                                <p class="font-bold text-slate-900">Kit Letto & Asciugamani (2 persone)</p>
+                                <p class="text-[#C5A059] font-semibold">€15.00</p>
+                            </div>
+                            <input type="number" id="qty_kit_letto_asc" min="0" value="0" class="w-16 p-1.5 text-center bg-white rounded-lg border border-[#C5A059]/40 font-bold text-slate-900">
+                        </div>
+
+                        <!-- Articolo 2 -->
+                        <div class="flex justify-between items-center p-2.5 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20">
+                            <div>
+                                <p class="font-bold text-slate-900">Kit Lenzuola Matrimoniale</p>
+                                <p class="text-[#C5A059] font-semibold">€10.00</p>
+                            </div>
+                            <input type="number" id="qty_kit_letto" min="0" value="0" class="w-16 p-1.5 text-center bg-white rounded-lg border border-[#C5A059]/40 font-bold text-slate-900">
+                        </div>
+
+                        <!-- Articolo 3 -->
+                        <div class="flex justify-between items-center p-2.5 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20">
+                            <div>
+                                <p class="font-bold text-slate-900">Kit Asciugamani</p>
+                                <p class="text-[#C5A059] font-semibold">€10.00</p>
+                            </div>
+                            <input type="number" id="qty_kit_asc" min="0" value="0" class="w-16 p-1.5 text-center bg-white rounded-lg border border-[#C5A059]/40 font-bold text-slate-900">
+                        </div>
+
+                        <!-- Articolo 4 -->
+                        <div class="flex justify-between items-center p-2.5 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20">
+                            <div>
+                                <p class="font-bold text-slate-900">Spazzolino da denti</p>
+                                <p class="text-[#C5A059] font-semibold">€2.00</p>
+                            </div>
+                            <input type="number" id="qty_spazzolino" min="0" value="0" class="w-16 p-1.5 text-center bg-white rounded-lg border border-[#C5A059]/40 font-bold text-slate-900">
+                        </div>
+
+                        <!-- Articolo 5 -->
+                        <div class="flex justify-between items-center p-2.5 bg-[#FDF6F7]/60 rounded-xl border border-[#C5A059]/20">
+                            <div>
+                                <p class="font-bold text-slate-900">Coppia di ciabattine</p>
+                                <p class="text-[#C5A059] font-semibold">€1.00</p>
+                            </div>
+                            <input type="number" id="qty_ciabattine" min="0" value="0" class="w-16 p-1.5 text-center bg-white rounded-lg border border-[#C5A059]/40 font-bold text-slate-900">
+                        </div>
+
+                        <!-- Metodo di pagamento -->
+                        <div class="space-y-1 pt-1">
+                            <label for="metodo_pagamento" class="font-bold text-slate-900 block">Metodo di pagamento:</label>
+                            <select id="metodo_pagamento" class="w-full p-2 bg-white rounded-xl border border-[#C5A059]/40 text-slate-800 font-medium text-xs">
+                                <option value="Contanti">Contanti</option>
+                                <option value="PayPal (Amici e Famiglia)">PayPal (Amici e Famiglia)</option>
+                            </select>
+                        </div>
+
+                        <!-- Pulsante Invio -->
+                        <button type="submit" class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2 mt-2">
+                            <i class="fa-brands fa-whatsapp text-base"></i> Invia ordine direttamente su WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </details>
+        </section>
+
+        <!-- 10. FARMACIE, OSPEDALI E SICUREZZA -->
         <section id="sicurezza" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
             <details class="group">
                 <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-rose-50/30 transition">
@@ -392,15 +582,6 @@
                             <p class="text-slate-600">La più vicina per emergenze notturne e festive.</p>
                             <p class="text-xs font-semibold text-slate-800">Tragitto da Kademy House: 5-7 minuti a piedi.</p>
                             <a href="https://maps.google.com/?q=Farmacia+Stazione+Centrale+Milano" target="_blank" class="inline-flex items-center gap-1 text-[#C5A059] font-bold hover:underline pt-1">
-                                <i class="fa-solid fa-map-location-dot"></i> Apri mappa e indicazioni →
-                            </a>
-                        </div>
-
-                        <div class="p-2.5 bg-white rounded-lg border border-[#C5A059]/30 shadow-sm space-y-1">
-                            <p class="font-bold text-slate-900">2. Farmacia nei Dintorni</p>
-                            <p class="text-slate-600">Ottima per farmaci da banco e prodotti di prima necessità.</p>
-                            <p class="text-xs font-semibold text-slate-800">Tragitto da Kademy House: 3 minuti a piedi.</p>
-                            <a href="https://maps.google.com/?q=Farmacia+Via+Benedetto+Marcello+Milano" target="_blank" class="inline-flex items-center gap-1 text-[#C5A059] font-bold hover:underline pt-1">
                                 <i class="fa-solid fa-map-location-dot"></i> Apri mappa e indicazioni →
                             </a>
                         </div>
