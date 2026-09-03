@@ -1,123 +1,268 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guida Digitale Ospiti</title>
-    <!-- Tailwind CSS per una grafica moderna e pulita -->
+    <title>Guida Digitale - Kademy House</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .lang-content { display: none; }
-        .lang-content.active { display: block; }
-    </style>
+    <!-- FontAwesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased pb-12">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-    <!-- SELETTORE LINGUA IN ALTO -->
+    <!-- BARRA SUPERIORE / LINGUE -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Digital Guide</h1>
-            <div class="flex space-x-1 bg-gray-100 p-1 rounded-lg">
-                <button onclick="setLanguage('it')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md bg-white shadow-sm transition-all" data-lang="it">IT</button>
-                <button onclick="setLanguage('en')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md text-gray-600 transition-all" data-lang="en">EN</button>
-                <button onclick="setLanguage('es')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md text-gray-600 transition-all" data-lang="es">ES</button>
-                <button onclick="setLanguage('fr')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md text-gray-600 transition-all" data-lang="fr">FR</button>
-                <button onclick="setLanguage('de')" class="lang-btn px-2.5 py-1 text-xs font-bold rounded-md text-gray-600 transition-all" data-lang="de">DE</button>
+            <h1 class="font-bold text-lg text-slate-900 tracking-tight">KADEMY HOUSE</h1>
+            <div class="flex gap-2">
+                <button onclick="changeLang('it')" class="px-2 py-1 text-xs font-semibold bg-slate-100 hover:bg-slate-200 rounded text-slate-700">IT</button>
+                <button onclick="changeLang('en')" class="px-2 py-1 text-xs font-semibold bg-slate-100 hover:bg-slate-200 rounded text-slate-700">EN</button>
+                <button onclick="changeLang('fr')" class="px-2 py-1 text-xs font-semibold bg-slate-100 hover:bg-slate-200 rounded text-slate-700">FR</button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-md mx-auto px-4 mt-6 space-y-4">
+    <!-- CONTENUTO PRINCIPALE -->
+    <main class="max-w-md mx-auto p-4 space-y-6 pb-24">
 
-        <!-- INTRO / NOME APPARTAMENTO -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm text-center border border-gray-100">
-            <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-widest">Benvenuti</span>
-            <h2 class="text-2xl font-bold mt-3 text-gray-900">INSERISCI_NOME_APPARTAMENTO</h2>
-            <p class="text-sm text-gray-500 mt-1">La tua casa lontano da casa</p>
-        </div>
+        <!-- FOTO COPERTINA / APPARTAMENTO -->
+        <section class="rounded-2xl overflow-hidden shadow-md bg-white">
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80" alt="Appartamento" class="w-full h-48 object-cover">
+            <div class="p-4 text-center">
+                <h2 class="text-xl font-bold text-slate-900">Benvenuti a Kademy House!</h2>
+                <p class="text-sm text-slate-500 mt-1">La tua casa lontano da casa nel cuore di Milano</p>
+            </div>
+        </section>
+
+        <!-- PULSANTI RAPIDI (WhatsApp & Chiamata) -->
+        <section class="grid grid-cols-2 gap-3">
+            <a href="https://wa.me/393331234567" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-4 rounded-xl font-medium shadow-sm transition">
+                <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp
+            </a>
+            <a href="tel:+393331234567" class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-xl font-medium shadow-sm transition">
+                <i class="fa-solid fa-phone text-lg"></i> Chiama
+            </a>
+        </section>
 
         <!-- SEZIONE WI-FI -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <details class="group">
-                <summary class="flex justify-between items-center p-4 cursor-pointer font-semibold text-gray-800 list-none">
-                    <span class="flex items-center gap-3">
-                        <span class="p-2 bg-blue-50 text-blue-600 rounded-lg">??</span>
-                        <span class="lang-content active" data-lang="it">Wi-Fi & Connessione</span>
-                        <span class="lang-content" data-lang="en">Wi-Fi & Internet</span>
-                        <span class="lang-content" data-lang="es">Wi-Fi y ConexiÛn</span>
-                        <span class="lang-content" data-lang="fr">Wi-Fi & Connexion</span>
-                        <span class="lang-content" data-lang="de">Wi-Fi & Internet</span>
-                    </span>
-                    <span class="transition group-open:rotate-180">?</span>
-                </summary>
-                <div class="p-4 pt-0 text-sm text-gray-600 border-t border-gray-50 space-y-2 mt-2">
-                    <p><strong>Network:</strong> INSERISCI_NOME_RETE</p>
-                    <p><strong>Password:</strong> INSERISCI_PASSWORD_WIFI</p>
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600">
+                    <i class="fa-solid fa-wifi text-lg"></i>
                 </div>
-            </details>
-        </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">Wi-Fi & Connessione</h3>
+                    <p class="text-xs text-slate-500">Accesso gratuito ad alta velocit√†</p>
+                </div>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl mt-3 text-sm space-y-1 border border-slate-200/60">
+                <p><strong>Rete (SSID):</strong> <span class="text-indigo-600 font-mono">Kademy_Guest</span></p>
+                <p><strong>Password:</strong> <span class="text-indigo-600 font-mono">milano2026</span></p>
+            </div>
+        </section>
+
+        <!-- LAVANDERIA SOTTO CASA (NUOVA) -->
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center text-cyan-600">
+                    <i class="fa-solid fa-shirt text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">Lavanderia Self-Service</h3>
+                    <p class="text-xs text-slate-500">Comodissima, situata proprio sotto casa</p>
+                </div>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl text-sm text-slate-600">
+                <p class="font-bold text-slate-800"><i class="fa-solid fa-location-dot text-cyan-600 mr-1"></i> Lavanderia a pochi metri</p>
+                <p class="text-xs text-slate-500 mt-1">Disponibili lavatrici e asciugatrici professionali aperte tutti i giorni dalle 08:00 alle 21:00. Ideale per lunghi soggiorni o per il bucato rapido.</p>
+            </div>
+        </section>
+
+        <!-- METROPOLITANA, COSTI E TRAGITTI (NUOVA) -->
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-600">
+                    <i class="fa-solid fa-train-subway text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">Metropolitana, Costi & Tragitti</h3>
+                    <p class="text-xs text-slate-500">Tariffe ATM e collegamenti per i punti chiave</p>
+                </div>
+            </div>
+
+            <!-- Box Costi Biglietti -->
+            <div class="p-3 bg-red-50/60 rounded-xl text-sm text-slate-700 mb-3 border border-red-100">
+                <p class="font-bold text-red-900 mb-1"><i class="fa-solid fa-ticket mr-1"></i> Costo Biglietti ATM</p>
+                <p class="text-xs text-slate-600">Il biglietto ordinario urbano costa <strong>2,20 ‚Ç¨</strong> ed √® valido 90 minuti dalla convalida. Puoi pagare direttamente ai tornelli anche con carta di credito contactless (senza commissioni).</p>
+            </div>
+
+            <!-- Lista Tragitti -->
+            <div class="space-y-3 text-sm text-slate-600">
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800"><i class="fa-solid fa-landmark text-red-600 mr-1"></i> Per il Duomo (Centro)</p>
+                    <p class="text-xs text-slate-500 mt-1"><strong>Tragitto:</strong> Prendi la Metro M1 (Rossa) vicina casa e scendi direttamente alla fermata "Duomo".</p>
+                    <p class="text-xs text-indigo-600 font-medium mt-1">‚è±Ô∏è Durata: circa 15 minuti senza cambi.</p>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800"><i class="fa-solid fa-train text-blue-600 mr-1"></i> Per la Stazione Centrale</p>
+                    <p class="text-xs text-slate-500 mt-1"><strong>Tragitto:</strong> Prendi la Metro M1 fino a Loreto, poi cambia con la Metro M2 (Verde) e scendi a "Centrale FS".</p>
+                    <p class="text-xs text-indigo-600 font-medium mt-1">‚è±Ô∏è Durata: circa 15-20 minuti.</p>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800"><i class="fa-solid fa-wine-glass text-amber-600 mr-1"></i> Per i Navigli (Movida)</p>
+                    <p class="text-xs text-slate-500 mt-1"><strong>Tragitto:</strong> Prendi la Metro M1 fino a Cadorna, poi cambia con la M2 (Verde) fino a "Porta Genova".</p>
+                    <p class="text-xs text-indigo-600 font-medium mt-1">‚è±Ô∏è Durata: circa 25 minuti.</p>
+                </div>
+
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800"><i class="fa-solid fa-futbol text-emerald-600 mr-1"></i> Per lo Stadio San Siro</p>
+                    <p class="text-xs text-slate-500 mt-1"><strong>Tragitto:</strong> Prendi la M1 fino a Lotto, poi cambia con la Metro M5 (Lilla) fino a "San Siro Stadio".</p>
+                    <p class="text-xs text-indigo-600 font-medium mt-1">‚è±Ô∏è Durata: circa 30 minuti.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BICI, MONOPATTINI & TAXI (AFFILIAZIONE) -->
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
+                    <i class="fa-solid fa-bicycle text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">Muoversi in Citt√† & Taxi</h3>
+                    <p class="text-xs text-slate-500">Sharing mobility e trasporti rapidi</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-sm text-slate-600">
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800"><i class="fa-solid fa-bolt text-teal-600 mr-1"></i> Bici & Monopattini (Sharing)</p>
+                    <p class="text-xs text-slate-500 mt-1">Sblocca una bici o un monopattino elettrico direttamente sotto casa.</p>
+                    <!-- INSERISCI QUI IL TUO LINK DI AFFILIAZIONE -->
+                    <a href="IL_TUO_LINK_AFFILIATO_BICI" target="_blank" class="inline-block mt-2 text-xs font-bold text-teal-600 hover:underline">Scarica app & sblocca codice &rarr;</a>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800"><i class="fa-solid fa-taxi text-amber-600 mr-1"></i> Taxi & NCC</p>
+                    <p class="text-xs text-slate-500 mt-1">Prenota un taxi o un'auto con conducente in pochi secondi.</p>
+                    <!-- INSERISCI QUI IL TUO LINK DI AFFILIAZIONE -->
+                    <a href="IL_TUO_LINK_AFFILIATO_TAXI" target="_blank" class="inline-block mt-2 text-xs font-bold text-teal-600 hover:underline">Prenota un Taxi &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEPOSITO BAGAGLI -->
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600">
+                    <i class="fa-solid fa-suitcase-rolling text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">Dove lasciare i Bagagli</h3>
+                    <p class="text-xs text-slate-500">Soluzioni comode per il check-in/out</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-sm text-slate-600">
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800"><i class="fa-solid fa-store text-orange-600 mr-1"></i> Deposito in Stazione Centrale</p>
+                    <p class="text-xs text-slate-500 mt-1">Servizio custodito situato al piano terra o nei pressi dei binari.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRENI DALLA STAZIONE CENTRALE -->
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                    <i class="fa-solid fa-train text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">Treni & Collegamenti</h3>
+                    <p class="text-xs text-slate-500">Partenze e destinazioni principali</p>
+                </div>
+            </div>
+            <div class="space-y-3 text-sm text-slate-600">
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800"><i class="fa-solid fa-plane text-blue-600 mr-1"></i> Malpensa Express</p>
+                    <p class="text-xs text-slate-500 mt-1">Collegamento diretto ogni 30 minuti verso l'Aeroporto di Malpensa.</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800"><i class="fa-solid fa-bolt text-amber-600 mr-1"></i> Alta Velocit√† (Frecciarossa / Italo)</p>
+                    <p class="text-xs text-slate-500 mt-1">Collegamenti diretti verso Roma, Firenze, Bologna, Napoli e Venezia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RISTORANTI CONSIGLIATI (CON LINK AFFILIATO / THEFORK) -->
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center text-rose-600">
+                    <i class="fa-solid fa-utensils text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">Ristoranti Consigliati</h3>
+                    <p class="text-xs text-slate-500">I nostri posti preferiti nei dintorni</p>
+                </div>
+            </div>
+            <div class="space-y-2 text-sm text-slate-600">
+                <div class="p-3 bg-slate-50 rounded-xl">
+                    <p class="font-bold text-slate-800">Trattoria Tipica Da Mario</p>
+                    <p class="text-xs text-slate-500">Cucina tradizionale milanese a 300 metri.</p>
+                    <!-- INSERISCI QUI IL TUO LINK AFFILIATO RISTORANTE -->
+                    <a href="IL_TUO_LINK_AFFILIATO_RISTORANTE" target="_blank" class="inline-block mt-2 text-xs font-bold text-rose-600 hover:underline">Prenota tavolo con sconto &rarr;</a>
+                </div>
+            </div>
+        </section>
 
         <!-- REGOLE DELLA CASA -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <details class="group">
-                <summary class="flex justify-between items-center p-4 cursor-pointer font-semibold text-gray-800 list-none">
-                    <span class="flex items-center gap-3">
-                        <span class="p-2 bg-amber-50 text-amber-600 rounded-lg">??</span>
-                        <span class="lang-content active" data-lang="it">Regole della Casa</span>
-                        <span class="lang-content" data-lang="en">House Rules</span>
-                        <span class="lang-content" data-lang="es">Normas de la Casa</span>
-                        <span class="lang-content" data-lang="fr">RËglement IntÈrieur</span>
-                        <span class="lang-content" data-lang="de">Hausregeln</span>
-                    </span>
-                    <span class="transition group-open:rotate-180">?</span>
-                </summary>
-                <div class="p-4 pt-0 text-sm text-gray-600 border-t border-gray-50 space-y-2 mt-2">
-                    <p class="lang-content active" data-lang="it">ï Vietato fumare all'interno.<br>ï Orario di silenzio: 22:00 - 08:00.<br>ï Animali non ammessi (salvo accordi).</p>
-                    <p class="lang-content" data-lang="en">ï No smoking inside.<br>ï Quiet hours: 10 PM - 8 AM.<br>ï Pets not allowed (unless agreed).</p>
-                    <p class="lang-content" data-lang="es">ï Prohibido fumar dentro.<br>ï Horario de silencio: 22:00 - 08:00.<br>ï No se admiten mascotas.</p>
-                    <p class="lang-content" data-lang="fr">ï Interdiction de fumer ‡ l'intÈrieur.<br>ï Heures de silence : 22h00 - 08h00.<br>ï Animaux non admis.</p>
-                    <p class="lang-content" data-lang="de">ï Rauchen im Inneren verboten.<br>ï Nachtruhe: 22:00 - 08:00 Uhr.<br>ï Haustiere nicht erlaubt.</p>
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
+                    <i class="fa-solid fa-clipboard-list text-lg"></i>
                 </div>
-            </details>
-        </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">Regole della Casa</h3>
+                    <p class="text-xs text-slate-500">Per una convivenza serena</p>
+                </div>
+            </div>
+            <ul class="text-sm space-y-2 text-slate-600">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-ban-smoking text-red-500 mt-1"></i> Vietato fumare all'interno dell'appartamento.</li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-volume-xmark text-amber-500 mt-1"></i> Orario di silenzio dalle 22:00 alle 08:00.</li>
+            </ul>
+        </section>
 
-        <!-- PULSANTI RAPIDI (EMERGENZA / WHATSAPP) -->
-        <div class="grid grid-cols-2 gap-3 pt-2">
-            <a href="https://wa.me/INSERISCI_TUO_NUMERO" target="_blank" class="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-4 rounded-xl text-sm shadow-sm transition-all">
-                <span>?? WhatsApp</span>
-            </a>
-            <a href="tel:INSERISCI_TUO_NUMERO" class="flex items-center justify-center gap-2 bg-gray-900 hover:bg-black text-white font-medium py-3 px-4 rounded-xl text-sm shadow-sm transition-all">
-                <span>?? Chiama</span>
-            </a>
-        </div>
+        <!-- NUMERI UTILI -->
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600">
+                    <i class="fa-solid fa-address-book text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900">Numeri Utili</h3>
+                    <p class="text-xs text-slate-500">Emergenze e contatti di supporto</p>
+                </div>
+            </div>
+            <ul class="text-sm space-y-2 text-slate-600">
+                <li class="flex justify-between items-center p-2 bg-slate-50 rounded-lg">
+                    <span>Emergenza Unica (UE)</span>
+                    <a href="tel:112" class="font-bold text-blue-600">112</a>
+                </li>
+            </ul>
+        </section>
 
     </main>
 
-    <!-- SCRIPT PER CAMBIO LINGUA DINAMICO -->
+    <!-- SCRIPT SEMPLICE PER LE LINGUE -->
     <script>
-        function setLanguage(lang) {
-            // Salva la preferenza
-            localStorage.setItem('preferred_lang', lang);
-            
-            // Aggiorna visibilit‡ testi
-            document.querySelectorAll('.lang-content').forEach(el => {
-                if(el.getAttribute('data-lang') === lang) {
-                    el.classList.add('active');
-                } else {
-                    el.classList.remove('active');
-                }
-            });
-
-            // Aggiorna stile bottoni
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                if(btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('bg-white', 'shadow-sm');
-                    btn.classList.remove('text-gray-600');
-                } else {
-                    btn.classList.remove('bg-white', 'shadow-sm');
-                    btn.classList.add('text-gray-600');
-                }
-            });
+        function changeLang(lang) {
+            if(lang === 'en') {
+                alert("English translation selected (Demo).");
+            } else if(lang === 'fr') {
+                alert("S√©lection fran√ßaise (D√©mo).");
+            } else {
+                alert("Lingua italiana selezionata.");
+            }
         }
     </script>
 </body>
