@@ -3,148 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kademy House • Digital Guide</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome per le icone -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Kademy House - Guida e Sicurezza</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e2e8f0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .emergency-item {
+            background: #fff5f5;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px 15px;
+            border-radius: 4px;
+        }
+        .emergency-item strong {
+            display: block;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen pb-12">
+<body>
 
-    <!-- HEADER / INTRO -->
-    <header class="max-w-md mx-auto px-4 pt-8 pb-6 text-center space-y-3">
-        <div class="inline-block p-3 rounded-2xl bg-white border border-[#C5A059]/30 shadow-sm">
-            <i class="fa-solid fa-house-chimney text-2xl text-[#C5A059]"></i>
-        </div>
-        <div>
-            <h1 class="text-xl font-bold tracking-tight text-slate-900">Kademy House</h1>
-            <p class="text-xs text-[#8E735B] font-medium tracking-wide uppercase">Digital Guest Guide</p>
-        </div>
+<div class="container">
 
-        <!-- Immagine Duomo di Milano -->
-        <div class="w-full h-48 rounded-2xl overflow-hidden shadow-sm border border-[#C5A059]/30 mt-3 relative">
-            <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?q=80&w=1000&auto=format&fit=crop" alt="Duomo di Milano" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-3">
-                <span class="text-white text-xs font-semibold tracking-wide drop-shadow">Benvenuti a Milano 🇮🇹</span>
+    <!-- Sezione Sicurezza ed Emergenze -->
+    <div class="section-card" id="sicurezza">
+        <h2>🚨 Sicurezza e Numeri di Emergenza</h2>
+        <p>La tua sicurezza è la nostra priorità. In caso di necessità, puoi fare riferimento ai seguenti numeri di emergenza attivi 24 ore su 24 su tutto il territorio nazionale:</p>
+        
+        <div class="emergency-grid">
+            <div class="emergency-item">
+                <strong>112 - NUE</strong>
+                Numero Unico Europeo per le Emergenze (Polizia, Carabinieri, Soccorso Sanitario, Vigili del Fuoco).
+            </div>
+            <div class="emergency-item">
+                <strong>118 - Emergenza Sanitaria</strong>
+                Pronto soccorso e ambulanza.
+            </div>
+            <div class="emergency-item">
+                <strong>115 - Vigili del Fuoco</strong>
+                Per incendi o situazioni di pericolo urgente.
+            </div>
+            <div class="emergency-item">
+                <strong>113 - Polizia di Stato</strong>
+                Per ordine pubblico e interventi di sicurezza.
             </div>
         </div>
-    </header>
+    </div>
 
-    <!-- MAIN CONTAINER -->
-    <main class="max-w-md mx-auto px-4 space-y-3">
+    <!-- Sezione Farmacie -->
+    <div class="section-card" id="farmacie">
+        <h2>💊 Farmacie di Riferimento</h2>
+        <p>Nelle vicinanze della struttura troverai punti vendita forniti per ogni evenienza farmaceutica:</p>
+        <ul>
+            <li>[Farmacia Boots Buenos Aires](http://googleusercontent.com/map_location_reference/10) (Corso Buenos Aires, 22) - Ampio orario di apertura, comoda e centrale.</li>
+            <li>[Farmacia Formaggia](http://googleusercontent.com/map_location_reference/11) (Corso Buenos Aires, 4) - Aperta fino a tarda sera.</li>
+            <li>[Antica Farmacia del Lazzaretto](http://googleusercontent.com/map_location_reference/12) (Via Panfilo Castaldi / Via Lecco, 29) - Professionale e vicina.</li>
+        </ul>
+    </div>
 
-        <!-- 9. SERVIZI EXTRA -->
-        <section id="extra" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
-            <details class="group">
-                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-slate-50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-white border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059] shadow-sm">
-                            <i class="fa-solid fa-shirt text-lg"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900 text-sm">Servizi Extra & Biancheria</h3>
-                            <p class="text-xs text-[#C5A059] font-medium">Kit letto e asciugamani supplementari</p>
-                        </div>
-                    </div>
-                    <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#C5A059] group-open:rotate-180 transition-transform duration-300">
-                        <i class="fa-solid fa-chevron-down text-xs"></i>
-                    </span>
-                </summary>
-                <div class="p-4 pt-0 space-y-3 border-t border-slate-100 text-xs text-slate-700">
-                    <div class="p-3 bg-slate-50 rounded-xl border border-[#C5A059]/20 space-y-2 mt-2">
-                        <p class="font-bold text-slate-900">✨ Kit Biancheria Extra</p>
-                        <p>Desideri un cambio supplementare durante il soggiorno? È possibile richiedere un set completo per persona.</p>
-                        <div class="p-2.5 bg-white rounded-lg border border-[#C5A059]/30 flex justify-between items-center font-medium">
-                            <span>Kit Letto + Set Asciugamani (1 persona)</span>
-                            <span class="font-bold text-[#C5A059] text-sm">€ 13,00</span>
-                        </div>
-                        <p class="text-[11px] text-slate-500 italic">Contattaci per richiedere la biancheria extra o per maggiori informazioni.</p>
-                    </div>
-                </div>
-            </details>
-        </section>
+    <!-- Sezione Ospedali -->
+    <div class="section-card" id="ospedali">
+        <h2>🏥 Ospedali e Pronto Soccorso</h2>
+        <p>Per esigenze mediche importanti o visite specialistiche, le strutture ospedaliere principali della zona includono:</p>
+        <ul>
+            <li>[Ospedale Fatebenefratelli e Oftalmico](http://googleusercontent.com/map_location_reference/13) (Piazzale Principessa Clotilde, 3 / Via Castelfidardo) - Dotato di Pronto Soccorso generale e specialistico attivo h24.</li>
+            <li>[Clinica Mangiagalli](http://googleusercontent.com/map_location_reference/14) (Via della Commenda, 12) - Punto di riferimento d'eccellenza per la cura e l'assistenza sanitaria specialistica.</li>
+        </ul>
+    </div>
 
-        <!-- 8. FARMACIE, OSPEDALI E SICUREZZA -->
-        <section id="sicurezza" class="bg-white rounded-2xl shadow-sm border border-[#C5A059]/30 overflow-hidden">
-            <details class="group">
-                <summary class="flex justify-between items-center p-4 cursor-pointer select-none list-none bg-white hover:bg-slate-50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-white border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059] shadow-sm">
-                            <i class="fa-solid fa-pills text-lg"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900 text-sm">Farmacie, Ospedali & Sicurezza</h3>
-                            <p class="text-xs text-[#C5A059] font-medium">Farmacie in zona, ospedali e numeri utili</p>
-                        </div>
-                    </div>
-                    <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#C5A059] group-open:rotate-180 transition-transform duration-300">
-                        <i class="fa-solid fa-chevron-down text-xs"></i>
-                    </span>
-                </summary>
-                <div class="p-4 pt-0 space-y-3 border-t border-slate-100 text-xs text-slate-700">
-                    
-                    <!-- Numeri Utili di Emergenza -->
-                    <div class="p-3 bg-slate-50 rounded-xl border border-[#C5A059]/20 space-y-2 mt-2">
-                        <p class="font-bold text-slate-900">🚨 Numeri Utili & Emergenze</p>
-                        <p class="text-slate-600">Per qualsiasi emergenza è attivo il <strong>Numero Unico Europeo: 112</strong></p>
-                        <div class="grid grid-cols-3 gap-1.5 pt-1 text-center font-medium">
-                            <div class="p-2 bg-white rounded-lg border border-[#C5A059]/30">
-                                <span class="block text-[#C5A059] font-bold text-sm">118</span>
-                                <span class="text-[10px] text-slate-600">Ambulanza</span>
-                            </div>
-                            <div class="p-2 bg-white rounded-lg border border-[#C5A059]/30">
-                                <span class="block text-[#C5A059] font-bold text-sm">112</span>
-                                <span class="text-[10px] text-slate-600">Carabinieri</span>
-                            </div>
-                            <div class="p-2 bg-white rounded-lg border border-[#C5A059]/30">
-                                <span class="block text-[#C5A059] font-bold text-sm">115</span>
-                                <span class="text-[10px] text-slate-600">Vigili del Fuoco</span>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Sezione Servizi e Gestione Soggiorno -->
+    <div class="section-card" id="servizi">
+        <h2>📋 Servizi e Gestione del Soggiorno</h2>
+        <p>Ricorda che per qualsiasi necessità relativa al tuo soggiorno, alla richiesta di biancheria extra o per comunicazioni con l'host, puoi fare riferimento ai canali digitali dedicati o utilizzare i moduli di contatto interattivi forniti al check-in.</p>
+    </div>
 
-                    <!-- Farmacia Corso Buenos Aires -->
-                    <div class="p-3 bg-slate-50 rounded-xl border border-[#C5A059]/20 space-y-2">
-                        <p class="font-bold text-slate-900">💊 Farmacia Corso Buenos Aires</p>
-                        <p>Punti di riferimento vicinissimi a casa (es. Farmacia Marinoni o Farmacia Baldini), comodamente raggiungibili a piedi.</p>
-                        <a href="https://maps.google.com/?q=Farmacia+Corso+Buenos+Aires+Milano" target="_blank" class="block w-full text-center py-2 px-3 bg-[#C5A059] hover:bg-[#b08d4b] text-white font-bold rounded-lg transition-colors mt-2">
-                            Apri mappa Corso Buenos Aires →
-                        </a>
-                    </div>
-
-                    <!-- Farmacia Porta Venezia -->
-                    <div class="p-3 bg-slate-50 rounded-xl border border-[#C5A059]/20 space-y-2">
-                        <p class="font-bold text-slate-900">💊 Farmacia Porta Venezia</p>
-                        <p>Soluzioni farmaceutiche nell'immediata vicinanza dello snodo di Porta Venezia (come la storica Farmacia del Lazzaretto in Via Panfilo Castaldi).</p>
-                        <a href="https://maps.google.com/?q=Farmacia+Porta+Venezia+Milano" target="_blank" class="block w-full text-center py-2 px-3 bg-[#C5A059] hover:bg-[#b08d4b] text-white font-bold rounded-lg transition-colors mt-2">
-                            Apri mappa Porta Venezia →
-                        </a>
-                    </div>
-
-                    <!-- Ospedali di Riferimento -->
-                    <div class="p-3 bg-slate-50 rounded-xl border border-[#C5A059]/20 space-y-2">
-                        <p class="font-bold text-slate-900">🏥 Ospedali di Riferimento</p>
-                        <p>Per visite o necessità ospedaliere, i punti di riferimento principali sono l'<strong>Ospedale Fatebenefratelli</strong> e la <strong>Clinica Mangiagalli</strong>.</p>
-                        <div class="flex gap-2 mt-2">
-                            <a href="https://maps.google.com/?q=Ospedale+Fatebenefratelli+Milano" target="_blank" class="flex-1 text-center py-1.5 px-2 bg-[#C5A059] hover:bg-[#b08d4b] text-white font-bold rounded-lg transition-colors">
-                                Mappa Fatebenefratelli →
-                            </a>
-                            <a href="https://maps.google.com/?q=Clinica+Mangiagalli+Milano" target="_blank" class="flex-1 text-center py-1.5 px-2 bg-[#C5A059] hover:bg-[#b08d4b] text-white font-bold rounded-lg transition-colors">
-                                Mappa Mangiagalli →
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </details>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="max-w-md mx-auto px-4 py-6 text-center text-xs text-[#8E735B] space-y-1">
-        <p class="font-semibold">Kademy House • Digital Guide</p>
-        <p>Grazie per aver scelto di soggiornare da noi!</p>
-    </footer>
+</div>
 
 </body>
-</html>
+</html>                
